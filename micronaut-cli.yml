@@ -1,0 +1,5 @@
+profile: service
+defaultPackage: merkator.micronaut
+---
+testFramework: junit
+sourceLanguage: java
