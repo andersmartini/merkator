@@ -40,7 +40,7 @@ public class RequestServiceImpl implements RequestService {
     @Override
     public Single<String> getRequests(String trackId) {
         return UmlRenderer.toUml(repository.getForTrackId(trackId))
-                .map(this::renderPng);
+                .map(this::renderSvg);
     }
 
     @Override
@@ -48,22 +48,16 @@ public class RequestServiceImpl implements RequestService {
         return null;
     }
 
-    private String renderPng(String source) throws IOException {
+    private String renderSvg(String source) throws IOException {
         SourceStringReader reader = new SourceStringReader(source);
         final ByteArrayOutputStream os = new ByteArrayOutputStream();
 
-        String desc = reader.generateImage(os, new FileFormatOption(FileFormat.SVG));
+        reader.generateImage(os, new FileFormatOption(FileFormat.SVG));
         os.close();
-
 
         final String svg = new String(os.toByteArray(), Charset.forName("UTF-8"));
 
-
-        OutputStream png = new FileOutputStream("/home/anders/uml.png");
-
-        reader.generateImage(png);
-
-        return "ok";
+        return svg;
     }
 
 }
