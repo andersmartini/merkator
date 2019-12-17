@@ -1,5 +1,7 @@
 package merkator.micronaut.controllers;
 
+import io.micronaut.core.util.CollectionUtils;
+import io.micronaut.http.annotation.Get;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
 import merkator.micronaut.domain.Request;
@@ -19,7 +21,12 @@ public class ExternalControllerImpl implements ExternalController {
     }
 
     @Override
-    public Single<String> getRequests(String trackId) {
-        return requestService.getRequests(trackId);
+
+    @Get("/{trackId}")
+    public Single<ModelAndView> getRequests(String trackId) {
+        return requestService.getFlowchart(trackId)
+                .map(svg -> svg.substring(55))
+                .map(svg -> CollectionUtils.mapOf("trackId", trackId, "svg",svg))
+                .map(m -> new ModelAndView<>("flowchart", m));
     }
 }
