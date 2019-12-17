@@ -2,12 +2,36 @@ package merkator.micronaut.repository;
 
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
+import io.reactivex.Single;
+import merkator.micronaut.domain.Message;
 
-public interface RequestRepository {
+import javax.inject.Singleton;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-    Flowable<Request> getForTrackId(String trackId);
+@Singleton
+public class RequestRepository {
 
-    Completable addRequest(String trackId, Request request);
+    private Map<String, List<Message>> requests = new HashMap<>();
 
-    Completable removeTrackId(String trackId);
+    public Flowable<Message> getForTrackId(String trackId) {
+        return Flowable.fromIterable(requests.getOrDefault(trackId,new ArrayList()));
+    }
+
+    public Completable addRequest(String trackId, Message message) {
+        return Single.just(requests.getOrDefault(trackId, new ArrayList<>()))
+                .flatMapCompletable(l -> {
+                    l.add(message);
+                    requests.put(trackId, l);
+                    return Completable.complete();
+                });
+    }
+
+    public Completable removeTrackId(String trackId) {
+        requests.remove(trackId);
+        return Completable.complete();
+    }
+
 }
