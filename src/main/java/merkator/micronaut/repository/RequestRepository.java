@@ -2,7 +2,6 @@ package merkator.micronaut.repository;
 
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
-import merkator.micronaut.domain.Request;
 
 public interface RequestRepository {
 

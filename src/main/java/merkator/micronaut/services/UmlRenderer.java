@@ -2,7 +2,6 @@ package merkator.micronaut.services;
 
 import io.reactivex.Flowable;
 import io.reactivex.Single;
-import merkator.micronaut.domain.Request;
 
 public class UmlRenderer {
 

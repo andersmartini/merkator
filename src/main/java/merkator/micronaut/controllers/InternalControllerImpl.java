@@ -3,14 +3,13 @@ package merkator.micronaut.controllers;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.Body;
 import io.reactivex.Single;
-import merkator.micronaut.domain.Request;
-import merkator.micronaut.domain.Response;
+import merkator.micronaut.domain.Message;
 import merkator.micronaut.services.RequestService;
 
 import javax.inject.Singleton;
 
 @Singleton
-public class InternalControllerImpl implements InternalController {
+public class InternalControllerImpl {
 
     private final RequestService requestService;
 
@@ -19,14 +18,8 @@ public class InternalControllerImpl implements InternalController {
     }
 
     @Override
-    public Single<HttpResponse> addRequest(@Body Request request) {
-        return requestService.addRequest(request)
-                .andThen(Single.just(HttpResponse.accepted()));
-    }
-
-    @Override
-    public Single<HttpResponse> addResponse(@Body Response response) {
-        return requestService.addResponse(response)
+    public Single<HttpResponse> addRequest(@Body Message message) {
+        return requestService.addRequest(message)
                 .andThen(Single.just(HttpResponse.accepted()));
     }
 

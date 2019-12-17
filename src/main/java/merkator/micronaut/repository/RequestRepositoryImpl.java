@@ -2,9 +2,7 @@ package merkator.micronaut.repository;
 
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
-import io.reactivex.Maybe;
 import io.reactivex.Single;
-import merkator.micronaut.domain.Request;
 
 import javax.inject.Singleton;
 import java.util.ArrayList;

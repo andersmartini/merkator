@@ -1,10 +1,8 @@
 package merkator.micronaut.services;
 
 import io.reactivex.Completable;
-import io.reactivex.Flowable;
 import io.reactivex.Single;
-import merkator.micronaut.domain.Request;
-import merkator.micronaut.domain.Response;
+import merkator.micronaut.domain.Message;
 import merkator.micronaut.repository.RequestRepository;
 import net.sourceforge.plantuml.FileFormat;
 import net.sourceforge.plantuml.FileFormatOption;
@@ -13,8 +11,6 @@ import net.sourceforge.plantuml.SourceStringReader;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.io.*;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.nio.charset.Charset;
 
 @Singleton

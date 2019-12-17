@@ -5,8 +5,6 @@ import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 import io.reactivex.Single;
-import merkator.micronaut.domain.Request;
-import merkator.micronaut.domain.Response;
 
 @Controller("/internal")
 public interface InternalController {

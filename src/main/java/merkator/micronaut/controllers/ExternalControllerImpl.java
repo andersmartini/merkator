@@ -2,10 +2,8 @@ package merkator.micronaut.controllers;
 
 import io.micronaut.core.util.CollectionUtils;
 import io.micronaut.http.annotation.Get;
-import io.reactivex.Flowable;
 import io.reactivex.Single;
 import io.micronaut.views.ModelAndView;
-import merkator.micronaut.domain.Request;
 import merkator.micronaut.services.RequestService;
 
 import javax.inject.Inject;
